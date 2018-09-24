@@ -48,7 +48,7 @@ const makeMiddleEarth = () => {
 
   // 1. create a section tag with an id of middle-earth
 
-  let $middleEarth = $('<section id="middle-earth">Middle-Earth</section>');
+  let $middleEarth = $('<section id="middle-earth"></section>');
 
   // 2. append the section to the body of the DOM.
 
@@ -65,7 +65,7 @@ const makeMiddleEarth = () => {
 
   //   3d. appends each land to the middle-earth section
 
-  for (i = 0; i < lands.length - 2; i ++) {
+  for (let i = 0; i < lands.length - 2; i ++) {
     $('#middle-earth').append('<article id="the-shire"><h1>The-Shire</h1></article>');
     $('#middle-earth').append('<article id="rivendell"><h1>Rivendell</h1></article>');
     $('#middle-earth').append('<article id="mordor"><h1>Mordor</h1></article>');
@@ -84,6 +84,11 @@ const makeHobbits = () => {
   console.log('Make hobbits');
 
   // 1. display an unordered list of the hobbits in the shire.
+
+  let hobbitList = $('ul li').addClass("hobbit");
+  for (let i = 0; i < hobbits.length; i++){
+    $('.hobbit').append('#the-shire');
+  };
 
   // 2. give each hobbit a class of "hobbit"
 
