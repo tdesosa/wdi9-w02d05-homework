@@ -44,7 +44,7 @@ const makeMiddleEarth = () => {
 
   // HINT: Make a console.log for each of your functions to make sure that, when you click, the correct function is being called!
 
-  console.log("Trying to make middle earth.");
+    // console.log("Trying to make middle earth.");
 
   // 1. create a section tag with an id of middle-earth
 
@@ -81,20 +81,24 @@ const makeMiddleEarth = () => {
 // ============
 const makeHobbits = () => {
 
-  console.log('Make hobbits');
+    // console.log('Make hobbits');
 
   // 1. display an unordered list of the hobbits in the shire.
-
-  let hobbitList = $('ul li').addClass("hobbit");
-  for (let i = 0; i < hobbits.length; i++){
-    $('.hobbit').append('#the-shire');
-  };
 
   // 2. give each hobbit a class of "hobbit"
 
   // hint: create a 'ul' outside the loop upon which to append the 'li's
 
   // hint: get 'The-Shire' by using its id
+
+    $("#the-shire").append("<ul></ul>")
+    
+    for(i = 0; i < hobbits.length - 3; i++){
+      $("#the-shire").append("<li class='hobbit'>Frodo Baggins</li>");
+      $("#the-shire").append("<li class='hobbit'>Samwise 'Sam' Gamgee</li>");
+      $("#the-shire").append("<li class='hobbit'>Meriadoc 'Merry' Brandybuck</li>");
+      $("#the-shire").append("<li class='hobbit'>Peregrin 'Pippin' Took</li>");
+    };
 
 };
 
