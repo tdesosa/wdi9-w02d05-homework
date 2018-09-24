@@ -92,7 +92,7 @@ const makeHobbits = () => {
   // hint: get 'The-Shire' by using its id
 
     $("#the-shire").append("<ul></ul>")
-    
+
     for(i = 0; i < hobbits.length - 3; i++){
       $("#the-shire").append("<li class='hobbit'>Frodo Baggins</li>");
       $("#the-shire").append("<li class='hobbit'>Samwise 'Sam' Gamgee</li>");
@@ -110,7 +110,7 @@ const makeHobbits = () => {
 // ============
 const keepItSecretKeepItSafe = () => {
 
-  console.log('keepItSecretKeepItSafe');
+    //console.log('keepItSecretKeepItSafe');
 
   // 1. create an empty div with an id of 'the-ring'
 
@@ -119,6 +119,10 @@ const keepItSecretKeepItSafe = () => {
   // hint: Frodo does not have an id, but there is a command to retrieve all elements with a certain class. This should give you an array for you to access . . .
 
   // when you think you have given Frodo the ring, check in your Elements tab
+
+  $div = $('<div id="the-ring"></div>');
+
+  $('.hobbit').first('li').append($div);
 
 };
 
