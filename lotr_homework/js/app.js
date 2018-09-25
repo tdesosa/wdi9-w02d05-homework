@@ -134,13 +134,23 @@ const keepItSecretKeepItSafe = () => {
 // ============
 const makeBaddies = () => {
 
-  console.log('makeBaddies');
+    // console.log('makeBaddies');
 
   // 1. display an unordered list of baddies in Mordor
 
   // 2. give each of the baddies a class of "baddy"
 
   // 3. remember to append them to Mordor
+
+  $("#mordor").append("<ul></ul>")
+
+  for(i = 0; i < baddies.length - 3; i++){
+    $("#mordor").append("<li class='baddy'>Sauron</li>");
+    $("#mordor").append("<li class='baddy'>Saruman</li>");
+    $("#mordor").append("<li class='baddy'>The Uruk-hai</li>");
+    $("#mordor").append("<li class='baddy'>Orcs</li>");
+  };
+  
 };
 
 // COMMIT YOUR WORK
