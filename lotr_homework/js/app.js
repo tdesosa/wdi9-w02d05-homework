@@ -49,6 +49,7 @@ const makeMiddleEarth = () => {
   // 1. create a section tag with an id of middle-earth
 
   let $middleEarth = $('<section id="middle-earth"></section>');
+  $middleEarth.attr('id', 'middle-earth');
 
   // 2. append the section to the body of the DOM.
 
@@ -65,10 +66,11 @@ const makeMiddleEarth = () => {
 
   //   3d. appends each land to the middle-earth section
 
-  for (let i = 0; i < lands.length - 2; i ++) {
-    $('#middle-earth').append('<article id="the-shire"><h1>The-Shire</h1></article>');
-    $('#middle-earth').append('<article id="rivendell"><h1>Rivendell</h1></article>');
-    $('#middle-earth').append('<article id="mordor"><h1>Mordor</h1></article>');
+  for (let i = 0; i < lands.length; i ++) {
+    const $land = $('<aritcle/>');
+    $land.attr('id', lands[i]);
+    $land.append(`<h1>${lands[i]}</h1>`);
+    $middleEarth.append($land);
   };
 
 };
@@ -91,15 +93,14 @@ const makeHobbits = () => {
 
   // hint: get 'The-Shire' by using its id
 
-    $("#the-shire").append("<ul></ul>")
-
-    for(i = 0; i < hobbits.length - 3; i++){
-      $("#the-shire").append("<li class='hobbit'>Frodo Baggins</li>");
-      $("#the-shire").append("<li class='hobbit'>Samwise 'Sam' Gamgee</li>");
-      $("#the-shire").append("<li class='hobbit'>Meriadoc 'Merry' Brandybuck</li>");
-      $("#the-shire").append("<li class='hobbit'>Peregrin 'Pippin' Took</li>");
-    };
-
+  const $hobbitList = $('<ul class="hobbits"></ul>');
+  hobbits.forEach((hobbit)=>{
+    const $hobbit = $('<li/>');
+    $hobbit.text(hobbit);
+    $hobbit.addClass('hobbit');
+    $hobbitList.append($hobbit);
+  });
+  $('#The-Shire').append($hobbitList);
 };
 
 // COMMIT YOUR WORK
@@ -142,14 +143,12 @@ const makeBaddies = () => {
 
   // 3. remember to append them to Mordor
 
-  $("#mordor").append("<ul></ul>")
-
-  for(i = 0; i < baddies.length - 3; i++){
-    $("#mordor").append("<li class='baddy'>Sauron</li>");
-    $("#mordor").append("<li class='baddy'>Saruman</li>");
-    $("#mordor").append("<li class='baddy'>The Uruk-hai</li>");
-    $("#mordor").append("<li class='baddy'>Orcs</li>");
-  };
+  const $baddyList = $('<ul class="baddies"></ul>');
+  baddies.forEach((baddy)=>{
+    const $baddy = $('<li/>').text(baddy).addClass('baddy');
+    $baddy.appendTo($baddyList);
+  });
+  $('#Mordor').append($baddyList);
   
 };
 
@@ -169,17 +168,15 @@ const makeBuddies = () => {
 
   // 3. give each of the buddies a class of "buddy"
 
-  $aside = $('<aside id="buddiesAside">Buddies</aside>');
-  $('#middle-earth').append($aside);
-
-  for(i = 0; i < buddies.length - 4; i++){
-    $($aside).append("<li class='buddy'>Gandalf the Grey</li>");
-    $($aside).append("<li class='buddy'>Legolas</li>");
-    $($aside).append("<li class='buddy'>Gimli</li>");
-    $($aside).append("<li class='buddy'>Strider</li>");
-    $($aside).append("<li class='buddy'>Boromi</li>");
-  };
-
+  const $buddyAside = $('<asidel class="buddies"></aside>');
+  $('#middle-earth').append($buddyAside);
+  const $buddyList = $('<ul class="buddy-list"></ul>');
+  buddies.forEach((buddy)=>{
+    const $buddy = $('<li/>').text(buddy).addClass('buddy');
+    $buddy.appendTo($buddyAside);
+  });
+  $buddyAside.append($buddyList);
+  $('#middle-earth').append($buddyAside);
 
 };
 
@@ -191,7 +188,9 @@ const makeBuddies = () => {
 // ============
 const leaveTheShire = () => {
 
-  console.log('leaveTheShire');
+  $('.hobbit').parent().appendTo('#middle-earth #Rivendell');
+
+  //console.log('leaveTheShire');
 
   // 1. grab the hobbits (the ul in which they reside) and move them to Rivendell
 
@@ -207,7 +206,9 @@ const leaveTheShire = () => {
 // ============
 const beautifulStranger = () => {
 
-  console.log('beautifulStranger');
+  $('.buddy:contains("Strider")').text('Aragorn');
+
+  //console.log('beautifulStranger');
 
   // 1. change the buddy 'Strider' textnode to "Aragorn"
 
@@ -223,7 +224,15 @@ const beautifulStranger = () => {
 // ============
 const forgeTheFellowShip = () => {
 
-  console.log('forgeTheFellowShip');
+  // console.log('forgeTheFellowShip');
+
+  const $theFellowship = $('<div/>');
+  $theFellowship.attr('id', 'the-fellowship');
+  $theFellowship.append('<h1>The Fellowship</h1>');
+  $theFellowship.append($('.hobbits'));
+  $theFellowship.append($('.buddies'));
+  $('#middle-earth').append($theFellowship);
+
 
   // 1. create a new div with an id 'the-fellowship'
 
@@ -243,7 +252,10 @@ const forgeTheFellowShip = () => {
 // ============
 const theBalrog = () => {
 
-  console.log('theBalrog');
+  $('.buddy:contains("Gandalf the Grey")').text('Gandalf the White').addClass("the-white");
+
+
+  // console.log('theBalrog');
 
   // 1. change the 'Gandalf' textNode to 'Gandalf the White'
 
@@ -261,7 +273,11 @@ const theBalrog = () => {
 // ============
 const hornOfGondor = () => {
 
-  console.log('hornOfGondor');
+  // console.log('hornOfGondor');
+
+    alert("The Horn of Gondor has been blown");
+      $('.buddy:contains("Boromir")').css("text-decoration", "line-through");
+      $('.baddy:contains("The Uruk-hai")').remove();
 
   // 1. create a pop-up alert that the horn of gondor has been blown
 
@@ -279,11 +295,15 @@ const hornOfGondor = () => {
 // ============
 const itsDangerousToGoAlone = () => {
 
-  console.log('itsDangerousToGoAlone');
+  // console.log('itsDangerousToGoAlone');
+
+  $("#Mordor").append($('.hobbit:contains("Frodo"), .hobbit:contains("Sam")'));
 
   // 1. take Frodo and Sam out of the fellowship and move them to Mordor (they don't need to be inside a ul in Mordor)
 
   // 2. add a div with an id of 'mount-doom' to Mordor
+
+  $('#Mordro').append('<div id="mount-doom"></div>');
 
 };
 
@@ -295,7 +315,11 @@ const itsDangerousToGoAlone = () => {
 // ============
 const weWantsIt = () => {
 
-  console.log('weWantsIt');
+  // console.log('weWantsIt');
+
+  $('#Mordor').append('<div id="gollum"></div>');
+  $('#gollum').append($('#the-ring'));
+  $('#mount-doom').append($('gollum'));
 
   // 1. Create a div with an id of 'gollum' and add it to Mordor
 
@@ -313,7 +337,11 @@ const weWantsIt = () => {
 // ============
 const thereAndBackAgain = () => {
 
-  console.log('thereAndBackAgain');
+  // console.log('thereAndBackAgain');
+
+  $('#gollum').remove();
+  $('#baddies').remove();
+  $('#The-Shire').append($('.hobbit'));
 
   // 1. remove Gollum and the Ring from the DOM
 
